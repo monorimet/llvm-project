@@ -2717,7 +2717,7 @@ FailureOr<SmallVector<Value>> SoftmaxOp::decomposeOperation(OpBuilder &b) {
   Value neutralForMaxFInit =
       b.create<linalg::FillOp>(loc, Value{neutralForMaxF}, outputReduce)
           .result();
-  Value max = reduce<arith::MaximumFOp>(b, loc, input, neutralForMaxFInit,
+  Value max = reduce<arith::MaxNumFOp>(b, loc, input, neutralForMaxFInit,
                                         reductionDim);
 
   // Step 2: Subtract max from input and exponentiate.
